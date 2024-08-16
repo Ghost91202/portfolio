@@ -1,0 +1,171 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #cccccc;
+    background-color: #1e1e1e;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 50px 250px 1fr;
+    grid-template-rows: 30px 1fr;
+    height: 100vh;
+}
+
+.top-bar {
+    grid-column: 1 / 4;
+    background-color: #2d2d2d;
+    color: #fff;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+}
+
+.menu {
+    display: flex;
+    gap: 15px;
+    color: #bbbbbb;
+}
+
+.sidebar {
+    background-color: #252526;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.sidebar ul li:hover {
+    background-color: #3a3a3a;
+}
+
+.sidebar ul li img {
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+}
+
+.explorer {
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-right: 1px solid #444;
+    overflow-y: auto;
+}
+
+.explorer h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.new-file-btn {
+    margin: 10px 0;
+    padding: 5px 10px;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.new-file-btn:hover {
+    background-color: #005f99;
+}
+
+.explorer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.explorer ul li {
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #cccccc;
+}
+
+.explorer ul li.folder {
+    font-weight: bold;
+}
+
+.explorer ul li:hover {
+    background-color: #454545;
+}
+
+.explorer ul ul {
+    padding-left: 20px;
+}
+
+.explorer ul ul.nested {
+    display: none;
+}
+
+.editor {
+    background-color: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow: auto;
+}
+
+.editor-header {
+    background-color: #2d2d2d;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.editor-header::after {
+    content: '×';
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+    padding: 0 10px;
+}
+
+.code-editor {
+    flex-grow: 1;
+    margin-top: 10px;
+    border: 1px solid #444;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #1e1e1e;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre-wrap;
+    outline: none;
+    overflow: auto;
+}
+
+.code-editor:focus {
+    border-color: #007acc;
+}
+
+.file.selected {
+    background-color: #007acc;
+    color: #fff;
+}
