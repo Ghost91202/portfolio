@@ -1,171 +1,213 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #cccccc;
     background-color: #1e1e1e;
+    color: #d4d4d4;
 }
 
-.container {
-    display: grid;
-    grid-template-columns: 50px 250px 1fr;
-    grid-template-rows: 30px 1fr;
+.vscode-clone {
+    display: flex;
     height: 100vh;
-}
-
-.top-bar {
-    grid-column: 1 / 4;
-    background-color: #2d2d2d;
-    color: #fff;
-    padding: 5px 15px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    font-size: 14px;
-}
-
-.menu {
-    display: flex;
-    gap: 15px;
-    color: #bbbbbb;
+    overflow: hidden;
 }
 
 .sidebar {
-    background-color: #252526;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    width: 50px;
+    background-color: #333;
+    color: #ccc;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.logo {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007acc;
+}
+
+.sidebar-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
-.sidebar ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.sidebar-icons i, .extensions i {
+    font-size: 20px;
     cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
+    color: #ccc;
+    transition: color 0.3s;
 }
 
-.sidebar ul li:hover {
-    background-color: #3a3a3a;
+.sidebar-icons i:hover, .extensions i:hover {
+    color: #fff;
 }
 
-.sidebar ul li img {
-    filter: brightness(0) invert(1);
-    cursor: pointer;
+.extensions {
+    margin-top: auto;
+    font-size: 20px;
 }
 
-.explorer {
-    background-color: #1e1e1e;
+.file-explorer {
+    width: 220px;
+    background-color: #252526;
+    border-right: 1px solid #333;
     padding: 10px;
-    border-right: 1px solid #444;
     overflow-y: auto;
 }
 
-.explorer h3 {
-    margin-top: 0;
-    color: #fff;
-}
-
-.new-file-btn {
-    margin: 10px 0;
-    padding: 5px 10px;
-    background-color: #007acc;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.new-file-btn:hover {
-    background-color: #005f99;
-}
-
-.explorer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.explorer ul li {
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    color: #cccccc;
-}
-
-.explorer ul li.folder {
-    font-weight: bold;
-}
-
-.explorer ul li:hover {
-    background-color: #454545;
-}
-
-.explorer ul ul {
-    padding-left: 20px;
-}
-
-.explorer ul ul.nested {
-    display: none;
-}
-
-.editor {
-    background-color: #1e1e1e;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    overflow: auto;
-}
-
-.editor-header {
-    background-color: #2d2d2d;
-    padding: 5px 10px;
-    color: #fff;
-    font-weight: bold;
+.explorer-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444;
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+    color: #ccc;
 }
 
-.editor-header::after {
-    content: '×';
+.explorer-header button {
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    padding: 2px 8px;
     cursor: pointer;
-    font-size: 18px;
-    color: #fff;
-    padding: 0 10px;
+    border-radius: 2px;
+    transition: background-color 0.3s;
 }
 
-.code-editor {
-    flex-grow: 1;
-    margin-top: 10px;
-    border: 1px solid #444;
-    border-radius: 3px;
-    padding: 10px;
-    background-color: #1e1e1e;
-    color: #fff;
-    font-family: 'Courier New', Courier, monospace;
-    white-space: pre-wrap;
-    outline: none;
-    overflow: auto;
+.explorer-header button:hover {
+    background-color: #005a9e;
 }
 
-.code-editor:focus {
-    border-color: #007acc;
+ul {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    cursor: pointer;
+    padding: 5px 0;
+    transition: background-color 0.3s;
+    color: #ccc;
+}
+
+li:hover {
+    background-color: #333;
+}
+
+.folder {
+    font-weight: bold;
+}
+
+.file {
+    display: flex;
+    align-items: center;
+}
+
+.file i {
+    margin-right: 5px;
+    color: #007acc;
 }
 
 .file.selected {
-    background-color: #007acc;
+    background-color: #444;
+}
+
+.editor {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e;
+    overflow: hidden;
+}
+
+.tabs {
+    display: flex;
+    background-color: #333;
+    border-bottom: 1px solid #333;
+}
+
+.tab {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #ccc;
+    border-right: 1px solid #444;
+}
+
+.tab.active {
+    background-color: #444;
     color: #fff;
+}
+
+.tab:hover {
+    background-color: #555;
+}
+
+.editor-header {
+    background-color: #333;
+    padding: 10px;
+    color: #ccc;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+    display: none; /* Hidden, using tabs now */
+}
+
+.code-space {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-family: 'Courier New', Courier, monospace;
+    color: #d4d4d4;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #1e1e1e;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.settings {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+        background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1000;
+}
+
+.settings h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    color: #d4d4d4;
+}
+
+.settings label {
+    display: block;
+    margin-bottom: 10px;
+    color: #d4d4d4;
+}
+
+.settings select {
+    background-color: #333;
+    color: #d4d4d4;
+    border: none;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.settings option {
+    background-color: #2d2d2d;
+}
+
+.hide {
+    display: none;
 }

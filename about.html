@@ -5,56 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VS Code Clone</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Link to font icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="top-bar">
-            <div class="menu">File  Edit  Selection  View  Go  Run  Terminal  Help</div>
-        </div>
+    <div class="vscode-clone">
         <div class="sidebar">
-            <ul>
-                <li title="Explorer"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/files.png" alt="Files"></li>
-                <li title="Search"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/search.png" alt="Search"></li>
-                <li title="Source Control"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/source-code.png" alt="Source Control"></li>
-                <li title="Run"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/debug.png" alt="Run"></li>
-                <li title="Extensions"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/extensions.png" alt="Extensions"></li>
-            </ul>
+            <div class="logo">
+                <i class="fab fa-windows"></i>
+            </div>
+            <div class="sidebar-icons">
+                <i class="fas fa-folder"></i>
+                <i class="fas fa-search"></i>
+                <i class="fas fa-git-alt"></i>
+                <i class="fas fa-play"></i>
+                <i class="fas fa-bug"></i>
+                <i class="fas fa-cog" onclick="toggleSettings()"></i>
+            </div>
+            <div class="extensions">
+                <i class="fas fa-puzzle-piece"></i>
+            </div>
         </div>
-        <div class="explorer">
-            <h3>Explorer</h3>
-            <button class="new-file-btn" onclick="createFile()">+ New File</button>
+        <div class="file-explorer">
+            <div class="explorer-header">
+                <span>EXPLORER</span>
+                <button onclick="createFile()">New File</button>
+            </div>
             <ul id="file-list">
-                <li class="file" onclick="selectFile(this)">index.html</li>
-                <li class="file" onclick="selectFile(this)">styles.css</li>
-                <li class="file" onclick="selectFile(this)">script.js</li>
+                <li class="folder" onclick="toggleFolder(this)">&#9662; src</li>
+                <ul style="display: block;">
+                    <li class="file" onclick="openFile(this, 'index.html')">
+                        <i class="fas fa-file-code"></i> index.html
+                    </li>
+                    <li class="file" onclick="openFile(this, 'styles.css')">
+                        <i class="fas fa-file-code"></i> styles.css
+                    </li>
+                    <li class="file" onclick="openFile(this, 'script.js')">
+                        <i class="fas fa-file-code"></i> script.js
+                    </li>
+                </ul>
                 <li class="folder" onclick="toggleFolder(this)">&#9656; components</li>
-                <ul class="nested">
-                    <li class="file" onclick="selectFile(this)">Header.js</li>
-                    <li class="file" onclick="selectFile(this)">Footer.js</li>
+                <ul style="display: none;">
+                    <li class="file" onclick="openFile(this, 'Header.js')">
+                        <i class="fas fa-file-code"></i> Header.js
+                    </li>
+                    <li class="file" onclick="openFile(this, 'Footer.js')">
+                        <i class="fas fa-file-code"></i> Footer.js
+                    </li>
                 </ul>
-                <li class="folder" onclick="toggleFolder(this)">&#9656; assets</li>
-                <ul class="nested">
-                    <li class="file" onclick="selectFile(this)">logo.png</li>
-                    <li class="file" onclick="selectFile(this)">background.jpg</li>
-                </ul>
-                <li class="file" onclick="selectFile(this)">README.md</li>
-                <li class="file" onclick="selectFile(this)">package.json</li>
+                <li class="file" onclick="openFile(this, 'README.md')">
+                    <i class="fas fa-file-alt"></i> README.md
+                </li>
+                <li class="file" onclick="openFile(this, 'package.json')">
+                    <i class="fas fa-file-alt"></i> package.json
+                </li>
+                <li class="file" onclick="openFile(this, 'config.js')">
+                    <i class="fas fa-file-code"></i> config.js
+                </li>
+                <li class="file" onclick="openFile(this, 'App.js')">
+                    <i class="fas fa-file-code"></i> App.js
+                </li>
+                <li class="file" onclick="openFile(this, 'server.js')">
+                    <i class="fas fa-file-code"></i> server.js
+                </li>
             </ul>
         </div>
         <div class="editor">
-            <div class="editor-header">index.html</div>
-            <div class="code-editor" contenteditable="true" id="code-editor">
-                &lt;!DOCTYPE html&gt;<br>
-                &lt;html lang="en"&gt;<br>
-                &lt;head&gt;<br>
-                &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
-                &nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
-                &nbsp;&nbsp;&lt;title&gt;Document&lt;/title&gt;<br>
-                &lt;/head&gt;<br>
-                &lt;body&gt;<br>
-                &lt;/body&gt;<br>
-                &lt;/html&gt;
+            <div class="tabs" id="tabs">
+                <!-- Tabs for open files will be generated dynamically -->
             </div>
+            <div class="editor-header">Select a file to view its content</div>
+            <textarea id="code-editor" class="code-space" spellcheck="false">
+                <!-- Code will appear here -->
+            </textarea>
+        </div>
+        <div class="settings" id="settings">
+            <h2>Settings</h2>
+            <label>
+                Font Size:
+                <select id="font-size-selector" onchange="changeFontSize()">
+                    <option value="12px">12px</option>
+                    <option value="14px" selected>14px</option>
+                    <option value="16px">16px</option>
+                    <option value="18px">18px</option>
+                </select>
+            </label>
+            <label>
+                Theme:
+                <select id="theme-selector" onchange="changeTheme()">
+                    <option value="light">Light</option>
+                    <option value="dark" selected>Dark</option>
+                </select>
+            </label>
         </div>
     </div>
     <script src="script.js"></script>
